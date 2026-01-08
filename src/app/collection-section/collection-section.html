@@ -1,10 +1,14 @@
-<section class="collection-section mt-8">
+<section class="collection-section mt-8 ">
   <div class="flex items-center justify-between mb-2">
-    <h2 class="section-title">{{ title }}</h2>
+    <div class="flex items-center space-x-3 section_heading">
+      <div class="w-1 h-6 dark:bg-[#60A5FA] bg-[#053a7b] rounded"></div>
+      <h2>{{ title }}</h2>
+    </div>
+    
     <button
       *ngIf="hasMore"
       (click)="onShowMore?.()"
-      class="ml-auto px-3 py-1 rounded border"
+      class=" show-more-btn ml-auto px-3 py-1   "
       [disabled]="loading"
     >
       Show more
@@ -17,7 +21,7 @@
     </div>
   </ng-template>
   <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    <li *ngFor="let item of items" class="dark:bg-gray-800 dark:text-white rounded  ring shadow ring-gray-900/5">
+    <li *ngFor="let item of items" class="dark:bg-gray-800 bg-gray-900 text-white dark:text-white rounded  ring shadow ring-gray-900/5">
       <a
         *ngIf="collectionKey"
         [routerLink]="[collectionKey, item.id ?? item._id ?? item.slug]"

@@ -1,16 +1,18 @@
-<section class="search-section">
+<section class="search-section dark:bg-gray-200 bg-yellow-100 border dark:border-none border-black text-black rounded-2xl dark:text-black pl-4 caret-amber-600">
   <input
     aria-label="Search characters"
-    class="w-full px-3 py-2 text-sm theme-input"
+    class="w-full px-3 py-2 text-sm font-bold dark:text-green-800 theme-input outline-none placeholder-black dark:placeholder-gray-600  placeholder:opacity-65 placeholder:font-medium"
     placeholder="Search characters (e.g. Naruto, Sasuke)"
     (input)="onSearch($any($event.target).value)"
   />
 </section>
 
 <!-- Additional collections (clans, villages, etc.) -->
-<section class="characters">
-  <h2 class="section-title theme-text">Characters</h2>
-
+<section class="characters pt-3">
+  <div class="flex items-center space-x-3 section_heading">
+  <div class="w-1 h-6 dark:bg-[#60A5FA] bg-[#053a7b] rounded"></div>
+  <h2>Characters</h2>
+</div>
   <ng-template [ngIf]="loading()">
     <div class="text-center text-sm theme-text">Loading characters…</div>
   </ng-template>
@@ -18,13 +20,16 @@
     <div class="text-center text-sm text-red-400">Error: {{ error() }}</div>
   </ng-template>
 
-  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    <li *ngFor="let c of filtered()" class="rounded ring shadow ring-gray-900/5">
+  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 pt-3">
+    <li *ngFor="let c of filtered()" class="rounded      shadow-gray-500 characters">
       <a
         [routerLink]="['/character', c.id ?? c._id ?? c.slug]"
-        class="block p-4 rounded-lg shadow hover:shadow-lg transition-colors h-full theme-card"
+        class="  rounded shadow hover:shadow-lg transition-colors flex flex-col   items-center"
       >
-        <h3 class="text-lg font-semibold mb-1 theme-text">{{ c.name || c.title }}</h3>
+       <!----> <img class="h-full w-full rounded-lg relative"
+        [src]="c.images[0]||c.images"/>
+        <h3 class="text-lg font-semibold rounded-lg title w-full ">{{ c.name || c.title }}</h3>
+         
       </a>
     </li>
   </ul>
@@ -32,7 +37,7 @@
     <button
       NgIf="hasMore()"
       (click)="showMore()"
-      class="px-4 py-2 rounded-md border theme-card"
+      class="show-more-btn"
       [disabled]="loadingMore() || loading()"
     >
       {{ loadingMore() ? 'Loading…' : 'Show more' }}

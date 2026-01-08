@@ -1,82 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+ /* Global Tailwind imports */
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 
-@tailwind "tailwindcss/base";
-@tailwind "tailwindcss/components";
-@tailwind "tailwindcss/utilities";
-
-@layer components {
-  /* App layout */
-  .app-container {
-    @apply min-h-screen flex flex-col bg-slate-50 text-slate-900;
+@layer base {
+  /* Global font */
+  * {
+    font-family: "Poppins", sans-serif;
   }
 
-  .site-header {
-    @apply py-6 border-b border-slate-200 bg-white;
+  body {
+    @apply bg-white text-black dark:bg-black dark:text-gray-300;
   }
 
-  .site-title {
-    @apply text-3xl font-semibold text-center;
-  }
-
-  .site-subtitle {
-    @apply text-sm text-slate-600 text-center mt-1;
-  }
-
-  .site-footer {
-    @apply mt-auto py-4 text-center text-xs text-slate-500;
-  }
-
-  /* Dark overrides for layout */
-  .dark .app-container {
-    @apply bg-slate-900 text-slate-100;
-  }
-
-  .dark .site-header {
-    @apply border-slate-700 bg-slate-800;
-  }
-
-  .dark .site-subtitle {
-    @apply text-slate-300;
-  }
-
-  .dark .site-footer {
-    @apply text-slate-400;
-  }
-
-  /* Shared theme classes you already use */
-  .theme-input {
-    @apply bg-white text-slate-900 border border-slate-300 rounded-lg;
-  }
-
-  .dark .theme-input {
-    @apply bg-slate-800 text-slate-100 border-slate-600;
-  }
-
-  .theme-card {
-    @apply bg-slate-100 text-slate-900;
-  }
-
-  .dark .theme-card {
-    @apply bg-slate-800 text-slate-100;
-  }
-
-  .theme-text {
-    @apply text-slate-900;
-  }
-
-  .dark .theme-text {
-    @apply text-slate-100;
-  }
-
-  /* Toggle button */
+  /* Theme toggle button */
   .theme-toggle-btn {
-    @apply inline-flex items-center gap-2 rounded-full border border-slate-300
-           px-4 py-1.5 text-sm font-medium
-           bg-slate-100 hover:bg-slate-200 transition;
+    @apply border-2 rounded-2xl p-1 pl-2 pr-3 cursor-pointer transition-all duration-200 ease-in-out font-medium;
+  }
+  .theme-toggle-btn:hover {
+    @apply shadow-sm scale-105;
   }
 
-  .dark .theme-toggle-btn {
-    @apply border-slate-600 bg-slate-700 hover:bg-slate-600;
+  /* Naruto Title */
+  .site-title {
+    font-family: "Permanent Marker", cursive;
+    font-size: 48px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.5px;
+
+    /* Naruto gradient */
+    color: transparent;
+    background: linear-gradient(
+      180deg,
+      #fff28a 0%,
+      #ffd54f 15%,
+      #ff9800 50%,
+      #ff6a00 65%,
+      #e53935 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Black outline */
+    -webkit-text-stroke: 1.1px #000;
+    paint-order: stroke fill;
+
+    /* Subtle white highlight */
+    filter: drop-shadow(0 0 0.5px #fff);
+  }
+
+  /* Character card hover */
+  .characters > a {
+    position: relative;
+  }
+
+  .title {
+    opacity: 0;
+    background-color: rgba(218, 216, 216, 0.35);
+    @apply p-4 absolute bottom-0 m-0 text-center text-black transition-all duration-300 ease-in-out;
+  }
+
+  .characters > ul > li:hover {
+    @apply scale-105;
+  }
+
+  .characters:hover > a > .title {
+    opacity: 1;
+  }
+
+  /* Section Heading */
+  .section_heading > h2 {
+    @apply text-2xl font-semibold dark:text-[#70b0fe] text-[#053a7b];
+  }
+
+  /* --- Show More Button --- */
+  .show-more-btn {
+    @apply font-normal cursor-pointer rounded-lg border-2 text-black dark:text-white border-black dark:border-white relative overflow-hidden transition-colors duration-300 ease-in-out;
+    padding: 8px 22px;
+    background: transparent;
+  }
+
+  .show-more-btn:hover {
+    @apply font-medium text-black;
+    border-color: #ff9800;
+  }
+
+  .show-more-btn::before {
+    content: "";
+    @apply absolute inset-0 rounded-lg;
+    background: linear-gradient(90deg, #ffcc33, #ff9800);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+    z-index: -1;
+  }
+
+  .show-more-btn:hover::before {
+    transform: scaleX(1);
   }
 }

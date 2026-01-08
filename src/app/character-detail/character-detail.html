@@ -3,15 +3,16 @@
   <ng-template [ngIf]="error()"
     ><div class="error">Error: {{ error() }}</div></ng-template
   >
-  <div style="margin-top: 16px">
-    <a routerLink="/">← Back</a>
+  <div class="mt-4 mb-4" >
+    <a routerLink="/" class="bg-black text-white border rounded-lg p-1 pl-3 pr-3">← Back</a>
   </div>
 
   <ng-template [ngIf]="!loading() && character()">
-    <div class="character-detail">
-      <h2>{{ character().name }}</h2>
+    <div class="character-detail flex flex-col bg-orange-300 w-full h-full">
+     
 
-      <div class="flex items-center">
+      <div class="flex flex-col">
+         <h2>{{ character().name }}</h2>
         <img [src]="character().images[0]" />
         <div>
           <strong>{{ character().name }}</strong>
@@ -19,7 +20,7 @@
       </div>
 
       <div class="character-images" *ngIf="character().images?.length">
-        <h3>Images</h3>
+        <h3 class="font-bold text-2xl">Images</h3>
         <div class="image-list">
           <img
             *ngFor="let img of character().images"
@@ -31,16 +32,16 @@
       </div>
 
       <div class="character-section">
-        <h3>Debut</h3>
+        <h3 class="font-bold text-2xl">Debut</h3>
         <ul>
           <li *ngFor="let key of character().debut | keyvalue">
-            <strong>{{ key.key }}:</strong> {{ key.value }}
+            <strong class="capitalize">{{ key.key }}:</strong> {{ key.value }}
           </li>
         </ul>
       </div>
 
       <div class="character-section" *ngIf="character().family">
-        <h3>Family</h3>
+        <h3 class="font-bold text-2xl">Family</h3>
         <ul>
           <li *ngFor="let key of character().family | keyvalue">
             <strong>{{ key.key }}:</strong> {{ key.value }}
@@ -49,22 +50,22 @@
       </div>
 
       <div class="character-section" NgIf="character().jutsu?.length">
-        <h3>Jutsu</h3>
-        <ul>
+        <h3 class="font-bold text-2xl">Jutsu</h3>
+        <ul class="">
           <li *ngFor="let j of character().jutsu">{{ j }}</li>
         </ul>
         <div class="grid grid-cols-2 sm:grid-cols-3"></div>
       </div>
 
       <div class="character-section" *ngIf="character().natureType?.length">
-        <h3>Nature Types</h3>
+        <h3 class="font-bold text-2xl">Nature Types</h3>
         <ul>
           <li *ngFor="let n of character().natureType">{{ n }}</li>
         </ul>
       </div>
 
       <div class="character-section" *ngIf="character().personal">
-        <h3>Personal</h3>
+        <h3 class="font-bold text-2xl">Personal</h3>
         <ul>
           <li *ngFor="let key of character().personal | keyvalue">
             <strong>{{ key.key }}:</strong>
@@ -86,7 +87,7 @@
       </div>
 
       <div class="character-section" *ngIf="character().rank">
-        <h3>Rank</h3>
+        <h3 class="font-bold text-2xl">Rank</h3>
         <ul>
           <li *ngFor="let key of character().rank | keyvalue">
             <strong>{{ key.key }}:</strong>
@@ -101,14 +102,14 @@
       </div>
 
       <div class="character-section" *ngIf="character().tools?.length">
-        <h3>Tools</h3>
+        <h3 class="font-bold text-2xl">Tools</h3>
         <ul>
           <li *ngFor="let t of character().tools">{{ t }}</li>
         </ul>
       </div>
 
       <div class="character-section" *ngIf="character().voiceActors">
-        <h3>Voice Actors</h3>
+        <h3 class="font-bold text-2xl">Voice Actors</h3>
         <div *ngIf="character().voiceActors.japanese?.length">
           <strong>Japanese:</strong>
           <ul>
